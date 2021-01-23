@@ -14,21 +14,30 @@ namespace SortingVisualizerCSharp
 {
   public partial class Form1 : Form
   {
+    private Bitmap bm = new Bitmap(944, 684);
+    private Graphics g;
 
     private double[] arr;
 
     public Form1()
     {
       InitializeComponent();
-      //BubbleSort.Sort(test2, test2.Length).ToList().ForEach(x => Debug.Print(x.ToString()));
+      arr = Helper.GetRandomArray(600, 50);
+    }
+
+    private void Form1_Load(object sender, EventArgs e)
+    {
+      g = Graphics.FromImage(bm);
     }
 
 
-    public new void Paint(double[] arr)
+    public async void PaintOnScreen(double[] arr)
     {
-      panel1.Refresh();
+      
       PaintArray(arr, Painter.PaintLine);
-      Thread.Sleep(1);
+      Refresh();
+      g.Clear(Color.White);
+      Thread.Sleep(50);
     }
 
 
@@ -36,7 +45,7 @@ namespace SortingVisualizerCSharp
     {
       for (int i = 0; i < arr.Length; i++)
       {
-        GetLine(arr[i], panel1.CreateGraphics(), i * (Width / arr.Length), Height, Width / arr.Length);
+        GetLine(arr[i], g, i * (Width / arr.Length), Height, Width / arr.Length);
       }
 
       //CreateGraphics().FillRectangle(new SolidBrush(Color.Black), 100, 100, 100, 100);
@@ -44,20 +53,17 @@ namespace SortingVisualizerCSharp
 
     private void Form1_Shown(object sender, EventArgs e)
     {
-      Random randNum = new Random();
-      arr = Enumerable
-    .Repeat(0, 100)
-    .Select(i => randNum.NextDouble() * this.Height)
-    .ToArray();
-
-      //arr.ToList().ForEach(x => Debug.Print(x.ToString()));
-
-      Paint(arr);
+      PaintOnScreen(arr);
     }
 
     private async void buttonSortStart_Click(object sender, EventArgs e)
     {
-     await BubbleSort.SortAync(arr,arr.Length, Paint);
+     await BubbleSort.SortAync(arr,arr.Length, PaintOnScreen);
+    }
+
+    private void Form1_Paint_1(object sender, PaintEventArgs e)
+    {
+      e.Graphics.DrawImage(bm, 20, 0);
     }
   }
 }
