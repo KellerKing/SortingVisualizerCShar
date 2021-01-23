@@ -26,9 +26,9 @@ namespace SortingVisualizerCSharp
 
     public new void Paint(double[] arr)
     {
-      pictureBox1.Refresh();
+      panel1.Refresh();
       PaintArray(arr, Painter.PaintLine);
-      Thread.Sleep(20);
+      Thread.Sleep(1);
     }
 
 
@@ -36,7 +36,7 @@ namespace SortingVisualizerCSharp
     {
       for (int i = 0; i < arr.Length; i++)
       {
-        GetLine(arr[i], pictureBox1.CreateGraphics(), i * (Width / arr.Length), Height, Width / arr.Length);
+        GetLine(arr[i], panel1.CreateGraphics(), i * (Width / arr.Length), Height, Width / arr.Length);
       }
 
       //CreateGraphics().FillRectangle(new SolidBrush(Color.Black), 100, 100, 100, 100);

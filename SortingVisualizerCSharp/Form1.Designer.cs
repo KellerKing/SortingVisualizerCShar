@@ -30,6 +30,7 @@ namespace SortingVisualizerCSharp
     private void InitializeComponent()
     {
       this.buttonSortStart = new System.Windows.Forms.Button();
+      this.panel1 = new myBufferePanel();
       this.SuspendLayout();
       // 
       // buttonSortStart
@@ -42,11 +43,19 @@ namespace SortingVisualizerCSharp
       this.buttonSortStart.UseVisualStyleBackColor = true;
       this.buttonSortStart.Click += new System.EventHandler(this.buttonSortStart_Click);
       // 
+      // panel1
+      // 
+      this.panel1.Location = new System.Drawing.Point(13, 13);
+      this.panel1.Name = "panel1";
+      this.panel1.Size = new System.Drawing.Size(944, 684);
+      this.panel1.TabIndex = 2;
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(969, 748);
+      this.Controls.Add(this.panel1);
       this.Controls.Add(this.buttonSortStart);
       this.DoubleBuffered = true;
       this.Name = "Form1";
@@ -58,6 +67,7 @@ namespace SortingVisualizerCSharp
 
     #endregion
     private System.Windows.Forms.Button buttonSortStart;
+    private System.Windows.Forms.Panel panel1;
   }
 }
 
