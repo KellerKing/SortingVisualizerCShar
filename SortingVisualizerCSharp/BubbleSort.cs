@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SortingVisualizerCSharp
 {
@@ -8,26 +9,35 @@ namespace SortingVisualizerCSharp
   {
     private static double[] Swap(int index1, int index2, double[] arr) //TODO: Stimmt net
     {
-      var newArr = arr; //1 = 5 | 2 = 10
+      double[] newArr = new double[arr.Length];
+
+      Array.Copy(arr, newArr, arr.Length); 
       newArr[index1] = arr[index2];
       newArr[index2] = arr[index1];
 
       return newArr;
     }
 
-    public static double[] Sort(double[] arr, int n)
+    public static async Task<double[]> SortAync(double[] arr, int n, Action<double[]> paint)
     {
 
       if (n == 1) return arr;
 
-      var newArr = arr;
+      double[] newArr = new double[arr.Length];
+      Array.Copy(arr, newArr, arr.Length);
 
       for (int i = 0; i < n-1; i++)
       {
-        newArr = newArr[i] > newArr[i+1] ? Swap(i, i + 1, newArr) : newArr;
+        if (newArr[i] > newArr[i + 1])
+        {
+          newArr = Swap(i, i + 1, newArr);
+          paint(newArr);
+        }
+       // paint(newArr);
       }
+     
 
-      return Sort(newArr, n - 1);
+      return await SortAync(newArr, n - 1, paint);
     }
   }
 }

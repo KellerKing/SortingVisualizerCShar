@@ -29,13 +29,26 @@ namespace SortingVisualizerCSharp
     /// </summary>
     private void InitializeComponent()
     {
+      this.buttonSortStart = new System.Windows.Forms.Button();
       this.SuspendLayout();
+      // 
+      // buttonSortStart
+      // 
+      this.buttonSortStart.Location = new System.Drawing.Point(13, 703);
+      this.buttonSortStart.Name = "buttonSortStart";
+      this.buttonSortStart.Size = new System.Drawing.Size(94, 29);
+      this.buttonSortStart.TabIndex = 1;
+      this.buttonSortStart.Text = "Sort";
+      this.buttonSortStart.UseVisualStyleBackColor = true;
+      this.buttonSortStart.Click += new System.EventHandler(this.buttonSortStart_Click);
       // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(800, 450);
+      this.ClientSize = new System.Drawing.Size(969, 748);
+      this.Controls.Add(this.buttonSortStart);
+      this.DoubleBuffered = true;
       this.Name = "Form1";
       this.Text = "Form1";
       this.Shown += new System.EventHandler(this.Form1_Shown);
@@ -44,6 +57,7 @@ namespace SortingVisualizerCSharp
     }
 
     #endregion
+    private System.Windows.Forms.Button buttonSortStart;
   }
 }
 
